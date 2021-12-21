@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie add</title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+      </figure>
+    <h1 class="moviesAddTitulo"></h1>
+    <br>
+    <section id="formulario" >
+        <article >
+            <form action="/movies/create" method="POST">
+                <label for="title">Titulo </label>
+                <p><input type="text" name="title" title="El título no es válido" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required autofocus></p>
+
+                <label for="rating">Calificación </label>
+                <p><input type="number" name="rating" title="La calificación no es válida" pattern="^([0-9]|10)$" required> </p>
+
+                <label for="awards">Premios </label>
+                <p><input type="number" name="awards" title="Los premios no son un número válido" pattern="^[0-9]+$" required></p>
+
+                <label for="release_date">Fecha de creación </label>
+                <p><input type="date" name="release_date" title="La fecha no es válido" pattern="^[1-2][0-9]{3}-[0-9]{2}-[0-9]{2}$" required></p>
+
+                <label for="length">Duración </label>
+                <p><input type="number" name="length" title="La duración va de 60 a 360 min" min="60" max="360" required></p>
+                
+                <label for="genreID">Género </label>
+                <p>
+                    <select name="genre_id" title="Debe elegir un género" pattern="/^[1-9][0-9]{0,2}$/" required>
+                        <option value="" disabled selected>- Seleccione el género - </option>
+                        <% allGenres.forEach(genre => { %>
+                        <option value="<%= genre.id %>"><%= genre.name %></option>
+                        <% }); %>
+                    </select>
+                </p>
+                <br>
+                <p> <button class="botonAgregar" type="submit">Agregar</button>
+                
+                <a  class="botonVolver" href="/movies">Listado de Películas</a></p>
+            </form>
+        </article>
+    </section>
+</body>
+<script src="/js/moviesAdd.js" type="module"></script>
+
+</html>
